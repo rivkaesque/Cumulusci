@@ -1,0 +1,11 @@
+
+Insert  Contacts:
+    sf_object: Contact
+    table: RECORDS
+    filters:
+        - 'first_name is not null'
+    fields:
+        Salutation: TITLE_1
+        FirstName: first_name
+        LastName: Last_Name
+        Title: TITLE_2

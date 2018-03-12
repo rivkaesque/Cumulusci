@@ -1,0 +1,37 @@
+project:
+    name: fiontaminute
+    package:
+        name: fiontaminute
+        namespace: fiontaminute
+        api_version: 42.0
+tasks:
+    sandbox_data:
+        description: 'Loads page and page item data set'
+        class_path: cumulusci.tasks.bulkdata.LoadData
+        options:
+            database_url: 'http://localhost:8080/'
+            mapping: 'mapping.yml'
+    sandbox_data_delete:
+        description: 'WARNING: Deletes all data in the objects specified in the objects option.'
+        class_path: cumulusci.tasks.bulkdata.DeleteData
+        options:
+            objects:
+                - Contact
+#    sandbox_download_data:
+#        description: 'Downloads data from SF into database'
+#        class_path: cumulusci.tasks.bulkdata.QueryData
+#        options:
+#            database_url: 'sqlite:///npsp_test_data.db'
+#            mapping: 'load-mapping.yml'
+
+#            database_url: 'sqlite:///sandbox-data.sqlite'
+#            database_url: 'mssql+pymssql://dmanuel:KBY!YEd89Wn0@fiontadb.czqhff7rxztt.us-west-1.rds.amazonaws.com/test'
+
+flows:
+    sandbox_data_flow:
+        description: 'WARNING: This flow deletes all data first, then loads the complete test data set based on 1,024 Contacts into the target org.'
+        tasks:
+            1:
+                task: sandbox_data_delete
+            2:
+                task: sandbox_data
